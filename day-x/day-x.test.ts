@@ -3,7 +3,7 @@ import { solve } from "./index";
 
 let lines: string[] = [];
 
-describe("day 1", () => {
+describe("day x", () => {
   beforeAll(async () => {
     const bunFile = Bun.file(Bun.resolveSync("./input.txt", import.meta.dir));
     const input = await bunFile.text();
