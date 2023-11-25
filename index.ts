@@ -1,23 +1,16 @@
-import fg from 'fast-glob';
+import { join } from 'node:path';
+import { Glob, file, resolveSync } from 'bun';
 
-type ImportType = typeof import("./day-x/index");
+type ImportType = typeof import('./day-x/index');
 
 (async function() {
-  const days = await fg.glob(['day-*'], { onlyDirectories: true, ignore: ['day-x'] });
-  const promises = days.map(async (day) => {
-    let { solve } = (await import(`./${day}/index`) as ImportType);
-    const bunFile = Bun.file(Bun.resolveSync(`./${day}/input.txt`, import.meta.dir));
+  const glob = new Glob('day-*/index.ts');
+  for await (const path of glob.scan(".")) {
+    const [day] = path.split('/');
+    const { solve } = (await import(join(import.meta.dir, path)) as ImportType);
+    const bunFile = file(resolveSync(`./${day}/input.txt`, import.meta.dir));
     const input = await bunFile.text();
-    const lines = input.split("\n");
-    return solve(lines);
-  });
-
-  const answers = await Promise.allSettled(promises);
-  answers.forEach((answer, index) => {
-    if (answer.status === 'fulfilled') {
-      console.log(`Day ${index + 1}: ${answer.value}`);
-    } else {
-      console.log(`Day ${index + 1}: ${answer.reason}`);
-    }
-  });
+    const lines = input.split('\n');
+    console.log(`${day}: ${solve(lines)}`);
+  }
 })();
