@@ -18,5 +18,4 @@ looks like:
 
 ## Testing
 
-`bun test`
-`bun test --watch`
+`bun test` or `bun test --watch`
