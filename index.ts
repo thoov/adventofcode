@@ -10,7 +10,6 @@ type ImportType = typeof import('./day-x/index');
     const { solve } = (await import(join(import.meta.dir, path)) as ImportType);
     const bunFile = file(resolveSync(`./${day}/input.txt`, import.meta.dir));
     const input = await bunFile.text();
-    const lines = input.split('\n');
-    console.log(`${day}: ${solve(lines)}`);
+    console.log(`${day}: ${solve(input)}`);
   }
 })();

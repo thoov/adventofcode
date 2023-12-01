@@ -1,7 +1,7 @@
 import { describe, expect, test, beforeAll } from "bun:test";
 import { solve } from "./index";
 
-describe("day x", () => {
+describe("day 1", () => {
   let inputTxt: string;
   let testInputTxt: string;
   let testInput2Txt: string;
@@ -17,15 +17,15 @@ describe("day x", () => {
 
   test("solving part 1 correctly", async () => {
     const [part1] = solve(testInputTxt);
-    expect(part1).toEqual(0);
+    expect(part1).toEqual(142);
   });
 
   test("solving part 2 correctly", async () => {
     const [_, part2] = solve(testInput2Txt);
-    expect(part2).toEqual(0);
+    expect(part2).toEqual(281);
   });
 
   test("solving works correctly", async () => {
-    expect(solve(inputTxt)).toEqual([0, 0]);
+    expect(solve(inputTxt)).toEqual([56465, 55902]);
   });
 });
