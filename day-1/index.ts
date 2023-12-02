@@ -1,3 +1,10 @@
+/**
+ * The solve function that takes the input.txt and returns the solutions
+ * for part 1 and 2.
+ *
+ * @param {string} lines - the input string
+ * @returns {[number, number]} the solutions for each part
+ */
 export function solve(lines: string): [number, number] {
   return [parse(lines, false), parse(lines, true)];
 };
@@ -20,7 +27,7 @@ function parse(lines: string, allowWordNums: boolean): number {
         if (slice.startsWith('eight')) return 8
         if (slice.startsWith('nine')) return 9
       }
-      return parseInt(char);
+      return parseInt(char, 10);
     }).filter(n => !!n);
 
 
