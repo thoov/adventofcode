@@ -43,8 +43,6 @@ function calculateStepCount(
     stepCount += 1;
   }
 
-  console.log(stepCount);
-
   return stepCount;
 }
 
